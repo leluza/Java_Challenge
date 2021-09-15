@@ -46,8 +46,8 @@ public class Character implements Serializable {
         private String image;
 
         @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-        @JoinTable( name = "characters_films_series",  joinColumns=@JoinColumn(name="id_character"), inverseJoinColumns=@JoinColumn(name="id_film_serie"))
-        private List<Films_Series> film_series_asociated = new ArrayList<Films_Series>();
+        @JoinTable( name = "characters__films_series",  joinColumns=@JoinColumn(name="id_character"), inverseJoinColumns=@JoinColumn(name="id_film_serie"))
+        private List<Film_Serie> film_series_asociated = new ArrayList<Film_Serie>();
 
 
         public Long getId()
@@ -85,10 +85,66 @@ public class Character implements Serializable {
               this.image = image;
             }
 
-            public List<Films_Series>  getFilmSerie( ) {  return     film_series_asociated ;}
+            public List<Film_Serie>  getFilmSerie( ) {  return     film_series_asociated ;}
 
-            public void setFilmSerie( List<Films_Series> film_serie)
+            public void setFilmSerie( List<Film_Serie> film_serie)
              { this.film_series_asociated = film_serie; }
+
+            @Override
+            public int hashCode() {
+              final int prime = 31;
+              int result = 1;
+              result = prime * result + age;
+              result = prime * result + ((film_series_asociated == null) ? 0 : film_series_asociated.hashCode());
+              result = prime * result + ((history == null) ? 0 : history.hashCode());
+              result = prime * result + ((id_character == null) ? 0 : id_character.hashCode());
+              result = prime * result + ((image == null) ? 0 : image.hashCode());
+              result = prime * result + ((name == null) ? 0 : name.hashCode());
+              result = prime * result + weight;
+              return result;
+            }
+
+            @Override 
+            //esta comparando valores de variables no direcciones de mem
+            public boolean equals(Object obj) {
+              if (this == obj)
+                return true;
+              if (obj == null)
+                return false;
+              if (getClass() != obj.getClass())
+                return false;
+              Character other = (Character) obj;
+              if (age != other.age)
+                return false;
+              if (film_series_asociated == null) {
+                if (other.film_series_asociated != null)
+                  return false;
+              } else if (!film_series_asociated.equals(other.film_series_asociated))
+                return false;
+              if (history == null) {
+                if (other.history != null)
+                  return false;
+              } else if (!history.equals(other.history))
+                return false;
+              if (id_character == null) {
+                if (other.id_character != null)
+                  return false;
+              } else if (!id_character.equals(other.id_character))
+                return false;
+              if (image == null) {
+                if (other.image != null)
+                  return false;
+              } else if (!image.equals(other.image))
+                return false;
+              if (name == null) {
+                if (other.name != null)
+                  return false;
+              } else if (!name.equals(other.name))
+                return false;
+              if (weight != other.weight)
+                return false;
+              return true;
+            }
 
 
 }

@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CharacterService {//implements BaseService <CharacterDTO>{
+public class CharacterService {     //implements BaseService <CharacterDTO>{
 
   @Autowired
   private CharacterRepository characterRepository;
@@ -109,7 +109,7 @@ public class CharacterService {//implements BaseService <CharacterDTO>{
   }
   
 
-      // QUERY
+  @Transactional    // QUERY
   public List<Character> search (String f_name, Integer f_age, Long f_id_movie) throws Exception {
 
     try {
@@ -132,7 +132,7 @@ public class CharacterService {//implements BaseService <CharacterDTO>{
           
           if(  f_id_movie  != null  ) //|| f_age == 0 )
           {
-                filtered_characters = filtered_characters.stream().filter(ch -> ch.getFilmSerie().stream().filter( fs -> fs.getId() == f_id_movie).findFirst().isPresent()
+                filtered_characters = filtered_characters.stream().filter(ch -> ch.getFilmSerie().stream().filter( fs -> fs.getId_film_serie() == f_id_movie).findFirst().isPresent()
                           ).collect(Collectors.toCollection(ArrayList::new)); 
           }
 
