@@ -49,46 +49,104 @@ public class Character implements Serializable {
         @JoinTable( name = "characters__films_series",  joinColumns=@JoinColumn(name="id_character"), inverseJoinColumns=@JoinColumn(name="id_film_serie"))
         private List<Film_Serie> film_series_asociated = new ArrayList<Film_Serie>();
 
+        /**
+         * @return Long return the id_character
+         */
+        public Long getId_character() {
+          return id_character;
+        }
 
-        public Long getId()
-        {  return id_character; }
+        /**
+         * @param id_character the id_character to set
+         */
+        public void setId_character(Long id_character) {
+          this.id_character = id_character;
+        }
 
-        public void setId( Long id_character )
-        {   this.id_character = id_character;}
-
-        public String getNombre() {
+        /**
+         * @return String return the name
+         */
+        public String getName() {
           return name;
-        }      
-        public void setNombre ( String nombre )
-        {     this.name = nombre;}
+        }
 
-        public String getHistoria(  ) {
-              return history;        }
+        /**
+         * @param name the name to set
+         */
+        public void setName(String name) {
+          this.name = name;
+        }
 
-        public void setHistoria( String historia)
-        {this.history = historia;  }
+        /**
+         * @return int return the age
+         */
+        public int getAge() {
+          return age;
+        }
 
-          public int getEdad() {             return age;          }
+        /**
+         * @param age the age to set
+         */
+        public void setAge(int age) {
+          this.age = age;
+        }
 
-          public void setEdad(int edad) {  this.age = edad;}
-          
-          public int getPeso() { return this.weight;};
+        /**
+         * @return int return the weight
+         */
+        public int getWeight() {
+          return weight;
+        }
 
-          public void setPeso(int peso) {
-            this.weight = peso;}
+        /**
+         * @param weight the weight to set
+         */
+        public void setWeight(int weight) {
+          this.weight = weight;
+        }
 
-            public String getImage() {
-              return image;
-            }
+        /**
+         * @return String return the history
+         */
+        public String getHistory() {
+          return history;
+        }
 
-            public void setImage(String image) {
-              this.image = image;
-            }
+        /**
+         * @param history the history to set
+         */
+        public void setHistory(String history) {
+          this.history = history;
+        }
 
-            public List<Film_Serie>  getFilmSerie( ) {  return     film_series_asociated ;}
+        /**
+         * @return String return the image
+         */
+        public String getImage() {
+          return image;
+        }
 
-            public void setFilmSerie( List<Film_Serie> film_serie)
-             { this.film_series_asociated = film_serie; }
+        /**
+         * @param image the image to set
+         */
+        public void setImage(String image) {
+          this.image = image;
+        }
+
+        /**
+         * @return List<Film_Serie> return the film_series_asociated
+         */
+        public List<Film_Serie> getFilm_series_asociated() {
+          return film_series_asociated;
+        }
+
+        /**
+         * @param film_series_asociated the film_series_asociated to set
+         */
+        public void setFilm_series_asociated(List<Film_Serie> film_series_asociated) {
+          this.film_series_asociated = film_series_asociated;
+        }
+
 
             @Override
             public int hashCode() {
@@ -145,6 +203,7 @@ public class Character implements Serializable {
                 return false;
               return true;
             }
+
 
 
 }

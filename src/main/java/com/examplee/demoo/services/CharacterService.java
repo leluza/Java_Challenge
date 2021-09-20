@@ -34,7 +34,7 @@ public class CharacterService {     //implements BaseService <CharacterDTO>{
         {
           CharacterDTO auxDto = new CharacterDTO();
           auxDto.setImage(ch.getImage());
-          auxDto.setName(ch.getNombre());
+          auxDto.setName(ch.getName());
           dtos.add(auxDto);
         }
         return dtos;
@@ -52,12 +52,12 @@ public class CharacterService {     //implements BaseService <CharacterDTO>{
       Character ch = entityOptional.get();
       CharacterFullDTO fullDto = new CharacterFullDTO();
         fullDto.setImage(ch.getImage());
-        fullDto.setName(ch.getNombre());
-        fullDto.setWeight(ch.getPeso());
-        fullDto.setHistory(ch.getHistoria());
-        fullDto.setId_character(ch.getId());
-        fullDto.setAge(ch.getEdad());
-        fullDto.setFilm_series_asociated(ch.getFilmSerie());
+        fullDto.setName(ch.getName());
+        fullDto.setWeight(ch.getWeight());
+        fullDto.setHistory(ch.getHistory());
+        fullDto.setId_character(ch.getId_character());
+        fullDto.setAge(ch.getAge());
+        fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
       return fullDto;
     } catch (Exception e) {
       throw new Exception(e.getMessage());
@@ -121,18 +121,18 @@ public class CharacterService {     //implements BaseService <CharacterDTO>{
 
           if ( f_name  != null )
           {
-              filtered_characters = filtered_characters.stream().filter(ch -> ch.getNombre().equals(f_name)).collect(Collectors.toCollection(ArrayList::new));
+              filtered_characters = filtered_characters.stream().filter(ch -> ch.getName().equals(f_name)).collect(Collectors.toCollection(ArrayList::new));
           }
           
           if (f_age  != null)
           {
               filtered_characters = filtered_characters.stream()
-                              .filter(   ch -> ch.getEdad() == f_age ).collect(Collectors.toCollection(ArrayList::new));
+                              .filter(   ch -> ch.getAge() == f_age ).collect(Collectors.toCollection(ArrayList::new));
           }
           
           if(  f_id_movie  != null  ) //|| f_age == 0 )
           {
-                filtered_characters = filtered_characters.stream().filter(ch -> ch.getFilmSerie().stream().filter( fs -> fs.getId_film_serie() == f_id_movie).findFirst().isPresent()
+                filtered_characters = filtered_characters.stream().filter(ch -> ch.getFilm_series_asociated().stream().filter( fs -> fs.getId_film_serie() == f_id_movie).findFirst().isPresent()
                           ).collect(Collectors.toCollection(ArrayList::new)); 
           }
 
@@ -153,12 +153,12 @@ public class CharacterService {     //implements BaseService <CharacterDTO>{
         {
           CharacterFullDTO fullDto = new CharacterFullDTO();
           fullDto.setImage(ch.getImage());
-          fullDto.setName(ch.getNombre());
-          fullDto.setWeight(ch.getPeso());
-          fullDto.setHistory(ch.getHistoria());
-          fullDto.setId_character(ch.getId());
-          fullDto.setAge(ch.getEdad());
-          fullDto.setFilm_series_asociated(ch.getFilmSerie());
+          fullDto.setName(ch.getName());
+          fullDto.setWeight(ch.getWeight());
+          fullDto.setHistory(ch.getHistory());
+          fullDto.setId_character(ch.getId_character());
+          fullDto.setAge(ch.getAge());
+          fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
           fullDtos.add(fullDto);
         }
           return fullDtos;

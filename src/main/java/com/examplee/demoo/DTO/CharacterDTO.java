@@ -7,7 +7,6 @@ public class CharacterDTO {
   private String name;
   
 
-
     /**
      * @return String return the Image
      */
