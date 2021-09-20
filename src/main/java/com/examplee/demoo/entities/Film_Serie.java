@@ -40,7 +40,7 @@ public class Film_Serie implements Serializable {
   private int calification;
 
   
-  @ManyToMany  // no necesito acceder a los personajes desde las peliculas  (mappedBy = "film_series_asociated")
+  @ManyToMany  (mappedBy = "film_series_asociated")
   private List<Character> characters_asociated = new  ArrayList<Character>();
 
   @ManyToOne (cascade = CascadeType.PERSIST) 

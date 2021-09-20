@@ -46,7 +46,8 @@ public class Character implements Serializable {
         private String image;
 
         @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-        @JoinTable( name = "characters__films_series",  joinColumns=@JoinColumn(name="id_character"), inverseJoinColumns=@JoinColumn(name="id_film_serie"))
+        @JoinTable( name = "characters__films_series",
+                                        joinColumns=@JoinColumn(name="id_character"), inverseJoinColumns=@JoinColumn(name="id_film_serie"))
         private List<Film_Serie> film_series_asociated = new ArrayList<Film_Serie>();
 
         /**
