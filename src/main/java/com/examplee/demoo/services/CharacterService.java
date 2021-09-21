@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 
 import com.examplee.demoo.repositories.CharacterRepository;
 import com.examplee.demoo.entities.Character;
+import com.examplee.demoo.entities.Film_Serie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,11 @@ public class CharacterService {     //implements BaseService <CharacterDTO>{
         fullDto.setHistory(ch.getHistory());
         fullDto.setId_character(ch.getId_character());
         fullDto.setAge(ch.getAge());
-        fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
+//        fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
+            List<Film_Serie> fs_list = ch.getFilm_series_asociated();
+            List<String> fs_name_list = new ArrayList<String>();
+            fs_list.stream().forEach(e -> fs_name_list.add(e.getTitle()));
+        fullDto.setFilm_series_asociated(fs_name_list);
       return fullDto;
     } catch (Exception e) {
       throw new Exception(e.getMessage());
@@ -158,7 +163,10 @@ public class CharacterService {     //implements BaseService <CharacterDTO>{
           fullDto.setHistory(ch.getHistory());
           fullDto.setId_character(ch.getId_character());
           fullDto.setAge(ch.getAge());
-          fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
+              List<Film_Serie> fs_list = ch.getFilm_series_asociated();
+              List<String> fs_name_list = new ArrayList<String>();
+              fs_list.stream().forEach(e ->  fs_name_list.add( e.getTitle()) );
+          fullDto.setFilm_series_asociated(fs_name_list);
           fullDtos.add(fullDto);
         }
           return fullDtos;

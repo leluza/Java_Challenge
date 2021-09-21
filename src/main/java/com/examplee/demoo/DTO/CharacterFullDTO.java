@@ -1,7 +1,7 @@
 
 package com.examplee.demoo.DTO;
 
-import com.examplee.demoo.entities.Film_Serie;
+//import com.examplee.demoo.entities.Film_Serie;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,9 @@ public class CharacterFullDTO {
   private int weight;
   private String history;
   private String image;
-  private List<Film_Serie> Cfilm_series_asociated = new ArrayList<Film_Serie>();
+  private List<String> title_f_s_asoc = new ArrayList<String>();
+
+  //private List<Film_Serie> Cfilm_series_asociated = new ArrayList<Film_Serie>();
 
     /**
      * @return Long return the id_character
@@ -103,15 +105,15 @@ public class CharacterFullDTO {
     /**
      * @return List<Films_Series> return the film_series_asociated
      */
-    public List<Film_Serie> getFilm_series_asociated() {
-        return Cfilm_series_asociated;
+    public List<String> getFilm_series_asociated() {
+        return title_f_s_asoc;
     }
 
     /**
      * @param film_series_asociated the film_series_asociated to set
      */
-    public void setFilm_series_asociated(List<Film_Serie> film_series_asociated) {
-        this.Cfilm_series_asociated = film_series_asociated;
+    public void setFilm_series_asociated(List<String> title_f_s_asoc) {
+        this.title_f_s_asoc = title_f_s_asoc;
     }
 
 }
