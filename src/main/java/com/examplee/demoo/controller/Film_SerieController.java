@@ -1,7 +1,7 @@
 package com.examplee.demoo.controller;
 
 import com.examplee.demoo.entities.Film_Serie;
-import com.examplee.demoo.entities.Gender;
+//import com.examplee.demoo.entities.Gender;
 import com.examplee.demoo.services.Film_SerieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +94,16 @@ public class Film_SerieController {
     try {
       return ResponseEntity.status(HttpStatus.OK).body(film_serieService.search(f_title, f_gender, f_asc));
 
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor, intente mas tarde. \"}");
+    }
+  }
+
+  @GetMapping("/details") // MOSTRAR TODOS completo
+  public ResponseEntity<?> details() {
+    try {
+      ResponseEntity<?> RE = ResponseEntity.status(HttpStatus.OK).body(film_serieService.details());
+      return RE;
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor, intente mas tarde. \"}");
     }

@@ -12,7 +12,8 @@ public class Film_Serie_FullDTO {
 
   private int calification;
 
-  private List<Character> film_serie_asociated = new ArrayList<Character>();
+  private List<String>  name_characters_asociated = new ArrayList<String>();
+  //private List<Character> film_serie_asociated = new ArrayList<Character>();
   
 
     /**
@@ -73,17 +74,17 @@ public class Film_Serie_FullDTO {
     }
 
     /**
-     * @return List<Character> return the film_serie_asociated
+     * @return List<String> return the name_characters_asociated
      */
-    public List<Character> getCharacters_asociated() {
-        return film_serie_asociated;
+    public List<String> getName_characters_asociated() {
+        return name_characters_asociated;
     }
 
     /**
-     * @param film_serie_asociated the film_serie_asociated to set
+     * @param name_characters_asociated the name_characters_asociated to set
      */
-    public void setCharacters_asociated(List<Character> film_serie_asociated) {
-        this.film_serie_asociated = film_serie_asociated;
+    public void setName_characters_asociated(List<String> name_characters_asociated) {
+        this.name_characters_asociated = name_characters_asociated;
     }
 
 }

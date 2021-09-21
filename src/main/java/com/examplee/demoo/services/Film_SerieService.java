@@ -1,5 +1,8 @@
 package com.examplee.demoo.services;
 
+import com.examplee.demoo.DTO.Film_Serie_FullDTO;
+import com.examplee.demoo.entities.*;
+import com.examplee.demoo.entities.Character;
 import com.examplee.demoo.DTO.Film_Serie_LightDTO;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,7 +13,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import com.examplee.demoo.repositories.Film_SerieRepository;
-import com.examplee.demoo.entities.Film_Serie;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,7 @@ public class Film_SerieService {      //implements BaseService<Film_Serie> {
   //public Film_SerieService() {
   //}
 
-  @Transactional
+  @Transactional  // Mostrar todas las series 3 PROP
   public List<Film_Serie_LightDTO> findAll() throws Exception {
     try {
       List<Film_Serie> entities = film_serieRepository.findAll();
@@ -42,12 +45,25 @@ public class Film_SerieService {      //implements BaseService<Film_Serie> {
     }
   }
 
-  @Transactional
-  public Film_Serie findById(Long id) throws Exception {
+  @Transactional  // Mostrar UNO
+  public Film_Serie_FullDTO findById(Long id) throws Exception {
     try {
       Optional<Film_Serie> entityOptional = film_serieRepository.findById(id);
+      Film_Serie fs = entityOptional.get();
+      Film_Serie_FullDTO fullDto = new Film_Serie_FullDTO();
+      //fullDto.set(fs.getId_film_serie());
+      fullDto.setTitle(fs.getTitle());
+      fullDto.setBegin_date(fs.getBegin_date());
+      fullDto.setImage(fs.getImage());
+      fullDto.setCalification(fs.getCalification());
+      //fullDto.setAge(ch.getAge());
+      // fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
+      List<Character> ch_list = fs.getCharacters_asociated();
+      List<String> ch_name_list = new ArrayList<String>();
+      ch_list.stream().forEach(e -> ch_name_list.add(e.getName()));
+      fullDto.setName_characters_asociated(ch_name_list);
       // no sabe si encontrata una tabla o un registro
-      return entityOptional.get();
+      return  fullDto;
     } catch (Exception e) {
       throw new Exception(e.getMessage());
     }
@@ -129,6 +145,36 @@ public class Film_SerieService {      //implements BaseService<Film_Serie> {
       throw new Exception(e.getMessage());
     }
 
+  }
+
+  @Transactional // MOSTRAR TODOS completo
+  public List<Film_Serie_FullDTO> details() throws Exception {
+    try {
+      List<Film_Serie> fs_list = film_serieRepository.findAll();
+      List<Film_Serie_FullDTO> fs_fullDtos_list = new ArrayList<Film_Serie_FullDTO>();
+
+    for( Film_Serie  fs : fs_list)
+    {
+      Film_Serie_FullDTO fs_fullDto = new Film_Serie_FullDTO();
+     // Film_Serie_FullDTO fullDto = new Film_Serie_FullDTO();
+      // fullDto.set(fs.getId_film_serie());
+      fs_fullDto.setTitle(fs.getTitle());
+      fs_fullDto.setBegin_date(fs.getBegin_date());
+      fs_fullDto.setImage(fs.getImage());
+      fs_fullDto.setCalification(fs.getCalification());
+      // fullDto.setAge(ch.getAge());
+      // fullDto.setFilm_series_asociated(ch.getFilm_series_asociated());
+      List<Character> ch_list = fs.getCharacters_asociated();
+      List<String> ch_name_list = new ArrayList<String>();
+      ch_list.stream().forEach(e -> ch_name_list.add(e.getName()));
+      fs_fullDto.setName_characters_asociated(ch_name_list);
+      fs_fullDtos_list.add(fs_fullDto);
+    }
+      // no sabe si encontrata una tabla o un registro
+      return fs_fullDtos_list;
+    } catch (Exception e) {
+      throw new Exception(e.getMessage());
+    }
   }
 
 }
