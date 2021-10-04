@@ -1,0 +1,3 @@
+en la carpeta resource > statics
+
+van imagenes, videos, *.html
